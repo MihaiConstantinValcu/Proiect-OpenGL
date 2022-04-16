@@ -26,10 +26,11 @@ int pct = 1000;
 double rsj, rdj, rss, rds = 0;
 bool changeScore = false;
 int dificultate = 2;
-int color ;
+int color;
 float rMasina1, gMasina1, bMasina1;
 float rMasina2, gMasina2, bMasina2;
 bool inMenu = true;
+bool inEndScreen = false;
 
 bool gameover = false;
 
@@ -46,7 +47,7 @@ void RenderString(float x, float y, void* font, const unsigned char* string)
 {
 
 	glPushAttrib(GL_CURRENT_BIT);
-	glColor3f(1.0f, 1.0f, 1.0f);
+	glColor3f(0.0f, 0.0f, 0.0f);
 	glRasterPos2f(x, y);
 
 	glutBitmapString(font, string);
@@ -96,7 +97,7 @@ void startgame(void)
 void startMenu(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glColor3f(0.55, 0.788, 0.451);
+	glColor3f(0.5, 0.99, 0.5);
 	// Iarba de jos
 	glBegin(GL_POLYGON);
 	glVertex2i(-100, -140);// Stanga jos
@@ -124,8 +125,173 @@ void startMenu(void) {
 	for (int i = 0; i < strlen(message2); i++)
 		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message2[i]);
 
+	glColor3f(1, 1, 1);
 	glRasterPos3f(160, 150, 0);
 	char message3[] = "Press X to start the game";
+	for (int i = 0; i < strlen(message3); i++) {
+		glColor3f(0, 0, 0);
+		if (message3[i] == 'X') {
+			glColor3f(1, 0, 0);
+			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message3[i]);
+		}
+		else glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message3[i]);
+	}
+
+
+	glPushMatrix();
+	glTranslated(0, 50, 0);
+	glPushMatrix();
+
+	//prima masina
+	glColor3f(0, 0, 0);
+	glRecti(-45, -15, 45, 15);
+
+	glColor3f(1, 1, 1);
+	glRecti(-30, -15, 30, 15);
+
+	glColor3f(0.5, 0.5, 0.5);
+	glRecti(-5, -15, 5, 15);
+
+	// stopuri
+	glColor3f(1, 0, 0);
+	glRecti(-45, -15, -40, -5);
+	glRecti(-45, 15, -40, 5);
+
+	// faaruri
+	glColor3f(0.8, 0.5, 0);
+	glRectf(45, 15, 40, 5);
+	glRectf(45, -15, 40, -5);
+
+	//a doua masina 
+
+	glPushMatrix();
+	glTranslated(550, 0, 0);
+	glPushMatrix();
+
+	glColor3f(0.7, -0.5, 0);
+	glRecti(-45, -15, 45, 15);
+
+	// faruri
+	glColor3f(0.8, 0.5, 0);
+	glRecti(-45, -15, -40, -5);
+	glRecti(-45, 15, -40, 5);
+	// stopuri
+	glColor3f(1, 0, 0);
+	glRectf(45, 15, 40, 5);
+	glRectf(45, -15, 40, -5);
+
+	//parbrizul
+	glColor3f(0.85, 0.85, 0.85);
+	glRecti(-30, -12, -15, 12);
+
+	//plafon
+	glColor3f(0.75, 0.75, 0.75);
+	glRecti(-10, -12, 20, 12);
+
+	//luneta
+	glColor3f(0.85, 0.85, 0.85);
+	glRecti(25, -12, 35, 12);
+
+	//a treia masina 
+
+	glPushMatrix();
+	glTranslated(0, 150, 0);
+	glRotated(180, 0, 0, 0);
+	glPushMatrix();
+
+	glColor3f(0, 0, 0);
+	glRecti(-45, -15, 45, 15);
+
+	glColor3f(1, 1, 1);
+	glRecti(-30, -15, 30, 15);
+
+	glColor3f(0.5, 0.5, 0.5);
+	glRecti(-5, -15, 5, 15);
+
+	// stopuri
+	glColor3f(1, 0, 0);
+	glRecti(-45, -15, -40, -5);
+	glRecti(-45, 15, -40, 5);
+
+	// faruri
+	glColor3f(0.8, 0.5, 0);
+	glRectf(45, 15, 40, 5);
+	glRectf(45, -15, 40, -5);
+
+	//a patra masina 
+
+	glPushMatrix();
+	glTranslated(550, 0, 0);
+	//glRotated(90, 0, 0, 0);
+	glPushMatrix();
+
+	glColor3f(1, 1, 0);
+	glRecti(-45, -15, 45, 15);
+
+	// faruri
+	glColor3f(0.8, 0.5, 0);
+	glRecti(-45, -15, -40, -5);
+	glRecti(-45, 15, -40, 5);
+	// stopuri
+	glColor3f(1, 0, 0);
+	glRectf(45, 15, 40, 5);
+	glRectf(45, -15, 40, -5);
+
+	//parbrizul
+	glColor3f(0.85, 0.85, 0.85);
+	glRecti(-30, -12, -15, 12);
+
+	//plafon
+	glColor3f(0.75, 0.75, 0.75);
+	glRecti(-10, -12, 20, 12);
+
+	//luneta
+	glColor3f(0.85, 0.85, 0.85);
+	glRecti(25, -12, 35, 12);
+
+	glutSwapBuffers();
+}
+
+void endScreen(void) {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glColor3f(0.5, 0.99, 0.5);
+	// Iarba de jos
+	glBegin(GL_POLYGON);
+	glVertex2i(-100, -140);// Stanga jos
+	glVertex2i(700, -140); // Dreapta jos
+	glVertex2i(700, -80);  // Dreapta sus
+	glVertex2i(-100, -80); // Stanga sus
+	glEnd();
+
+	// Iarba de sus
+	glBegin(GL_POLYGON);
+	glVertex2i(-100, 400);// Stanga jos
+	glVertex2i(700, 400); // Dreapta jos
+	glVertex2i(700, 460); // Dreapta sus
+	glVertex2i(-100, 460);// Stanga sus
+	glEnd();
+
+	glColor3f(0, 0, 0);
+	glRasterPos3f(200, 425, 0);
+	char message[] = "Crashing mission!";
+	for (int i = 0; i < strlen(message); i++)
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
+
+	glRasterPos3f(110, -115, 0);
+	char message2[] = "A game about cars, crashes and you!";
+	for (int i = 0; i < strlen(message2); i++)
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message2[i]);
+
+	glColor3f(1, 1, 1);
+	glRasterPos3f(180, 200, 0);
+	char message4[] = "You crashed, too bad";
+	for (int i = 0; i < strlen(message4); i++)
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message4[i]);
+
+	glColor3f(1, 1, 1);
+	glRasterPos3f(160, 120, 0);
+	char message3[] = "Press C to close the game";
 	for (int i = 0; i < strlen(message3); i++) {
 		glColor3f(0, 0, 0);
 		if (message3[i] == 'X') {
@@ -255,7 +421,7 @@ void drawScene(void)
 	glClear(GL_COLOR_BUFFER_BIT);
 
 
-	glColor3f(0.55, 0.788, 0.451);
+	glColor3f(0.5,0.99,0.5);
 
 	// Iarba de jos
 	glBegin(GL_POLYGON);
@@ -285,13 +451,13 @@ void drawScene(void)
 	//cout << scorText;
 	//strcat(text, scorText);
 
-	RenderString(200.0f, 425.0f, GLUT_BITMAP_TIMES_ROMAN_24,(const unsigned char*)text);
-	
-	RenderString(240.0f, -115.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)"Scor: ");
-	RenderString(300.0f, -115.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)scorText);
+	RenderString(200.0f, 425.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)text);
 
-	RenderString(400.0f, -115.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)"Highscore: ");
-	RenderString(520.0f, -115.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)highscoreText);
+	RenderString(140.0f, -115.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)"Scor: ");
+	RenderString(200.0f, -115.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)scorText);
+
+	RenderString(300.0f, -115.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)"Highscore: ");
+	RenderString(420.0f, -115.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)highscoreText);
 	// Delimitare sosea
 	glLineWidth(5);
 	glColor3f(1, 1, 0);
@@ -311,7 +477,6 @@ void drawScene(void)
 	// Liniile intrerupte
 	glPushMatrix();
 	glTranslated(i, 0.0, 0.0);
-
 
 	glBegin(GL_LINES);
 	glVertex2i(-100, 80);
@@ -378,7 +543,8 @@ void drawScene(void)
 
 
 	if (ok == 0) {
-		RenderString(250.0f, 200.0f, GLUT_BITMAP_8_BY_13, (const unsigned char*)"GAME OVER");
+		inEndScreen = true;
+		glutDisplayFunc(endScreen);
 		if (gameover == false) {
 			ofstream g("Highscore.txt");
 			g << highscore;
@@ -399,55 +565,55 @@ void drawScene(void)
 	//desenam a doua masina (adversara)
 
 	//culoare random
-	
 
 
-	switch (color){
-		case 0:
-			rMasina1 = 0;
-			gMasina1 = 0.4;
-			bMasina1 = 0;
 
-			rMasina2 = 0.4;
-			gMasina2 = 0;
-			bMasina2 = 0;
-			break;
-		case 1:
-			rMasina1 = 0.4;
-			gMasina1 = 0;
-			bMasina1 = 0;
+	switch (color) {
+	case 0:
+		rMasina1 = 0;
+		gMasina1 = 0.4;
+		bMasina1 = 0;
 
-			rMasina2 = 0;
-			gMasina2 = 0.4;
-			bMasina2 = 0;
-			break;
-		case 2:
-			rMasina1 = 0.39;
-			gMasina1 = 0.79;
-			bMasina1 = 0;
+		rMasina2 = 0.4;
+		gMasina2 = 0;
+		bMasina2 = 0;
+		break;
+	case 1:
+		rMasina1 = 0.4;
+		gMasina1 = 0;
+		bMasina1 = 0;
 
-			rMasina2 = 0;
-			gMasina2 = 0;
-			bMasina2 = 0.39;
-			break;
-		case 3:
-			rMasina1 = 0;
-			gMasina1 = 0;
-			bMasina1 = 0.39;
+		rMasina2 = 0;
+		gMasina2 = 0.4;
+		bMasina2 = 0;
+		break;
+	case 2:
+		rMasina1 = 0.39;
+		gMasina1 = 0.79;
+		bMasina1 = 0;
 
-			rMasina2 = 0.39;
-			gMasina2 = 0.79;
-			bMasina2 = 0;
-			break;
-		case 4:
-			rMasina1 = 0.79;
-			gMasina1 = 1;
-			bMasina1 = 0.49;
+		rMasina2 = 0;
+		gMasina2 = 0;
+		bMasina2 = 0.39;
+		break;
+	case 3:
+		rMasina1 = 0;
+		gMasina1 = 0;
+		bMasina1 = 0.39;
 
-			rMasina2 = 0.99;
-			gMasina2 = 1;
-			bMasina2 = 0.5;
-			break;
+		rMasina2 = 0.39;
+		gMasina2 = 0.79;
+		bMasina2 = 0;
+		break;
+	case 4:
+		rMasina1 = 0.79;
+		gMasina1 = 1;
+		bMasina1 = 0.49;
+
+		rMasina2 = 0.99;
+		gMasina2 = 1;
+		bMasina2 = 0.5;
+		break;
 
 	}
 
@@ -457,7 +623,7 @@ void drawScene(void)
 
 	glColor3f(rMasina1, gMasina1, bMasina1);
 	glRecti(-45, -15, 45, 15);
-	
+
 	// faruri
 	glColor3f(0.8, 0.5, 0);
 	glRecti(-45, -15, -40, -5);
@@ -466,7 +632,7 @@ void drawScene(void)
 	glColor3f(1, 0, 0);
 	glRectf(45, 15, 40, 5);
 	glRectf(45, -15, 40, -5);
-	
+
 	//parbrizul
 	glColor3f(0.85, 0.85, 0.85);
 	glRecti(-30, -12, -15, 12);
@@ -487,7 +653,7 @@ void drawScene(void)
 
 	glColor3f(rMasina2, gMasina2, bMasina2);
 	glRecti(-45, -15, 45, 15);
-	
+
 	// faruri
 	glColor3f(0.8, 0.5, 0);
 	glRecti(-45, -15, -40, -5);
@@ -497,7 +663,7 @@ void drawScene(void)
 	glColor3f(1, 0, 0);
 	glRectf(45, 15, 40, 5);
 	glRectf(45, -15, 40, -5);
-	
+
 	//parbrizul
 	glColor3f(0.85, 0.85, 0.85);
 	glRecti(-30, -12, -15, 12);
@@ -521,8 +687,14 @@ void drawScene(void)
 void keys(unsigned char key, int x, int y) {
 	switch (key) {
 	case 'x':
-		inMenu = false;
-		glutDisplayFunc(drawScene);
+		if (inMenu) {
+			inMenu = false;
+			glutDisplayFunc(drawScene);
+		}
+		break;
+	case 'c':
+		if (inEndScreen)
+			exit(0);
 		break;
 	}
 	glutPostRedisplay();
@@ -561,7 +733,6 @@ void miscajos(void)
 			contor = -1;
 			j -= 1;
 
-
 		}
 
 		glutPostRedisplay();
@@ -585,7 +756,6 @@ void keyboard(int key, int x, int y)
 	}
 
 }
-
 
 int main(int argc, char** argv)
 {
