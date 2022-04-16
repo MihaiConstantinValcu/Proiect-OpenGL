@@ -124,12 +124,12 @@ void startMenu(void) {
 	glRasterPos3f(200, 425, 0);
 	char message[] = "Crashing mission!";
 	for (int i = 0; i < strlen(message); i++)
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15,message[i]);
 
 	glRasterPos3f(110, -115, 0);
 	char message2[] = "A game about cars, crashes and you!";
 	for (int i = 0; i < strlen(message2); i++)
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message2[i]);
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, message2[i]);
 
 	glColor3f(1, 1, 1);
 	glRasterPos3f(160, 150, 0);
@@ -138,9 +138,9 @@ void startMenu(void) {
 		glColor3f(0, 0, 0);
 		if (message3[i] == 'X') {
 			glColor3f(1, 0, 0);
-			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message3[i]);
+			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, message3[i]);
 		}
-		else glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message3[i]);
+		else glutBitmapCharacter(GLUT_BITMAP_9_BY_15, message3[i]);
 	}
 
 
@@ -288,18 +288,18 @@ void endScreen(void) {
 	glRasterPos3f(200, 425, 0);
 	char message[] = "Crashing mission!";
 	for (int i = 0; i < strlen(message); i++)
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, message[i]);
 
 	glRasterPos3f(110, -115, 0);
 	char message2[] = "A game about cars, crashes and you!";
 	for (int i = 0; i < strlen(message2); i++)
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message2[i]);
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, message2[i]);
 
 	glColor3f(1, 1, 1);
 	glRasterPos3f(180, 200, 0);
 	char message4[] = "You crashed, too bad";
 	for (int i = 0; i < strlen(message4); i++)
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message4[i]);
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, message4[i]);
 
 	glColor3f(1, 1, 1);
 	glRasterPos3f(160, 120, 0);
@@ -308,9 +308,9 @@ void endScreen(void) {
 		glColor3f(0, 0, 0);
 		if (message3[i] == 'X') {
 			glColor3f(1, 0, 0);
-			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message3[i]);
+			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, message3[i]);
 		}
-		else glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message3[i]);
+		else glutBitmapCharacter(GLUT_BITMAP_9_BY_15, message3[i]);
 	}
 
 
@@ -439,7 +439,7 @@ void drawScene(void)
 	glClear(GL_COLOR_BUFFER_BIT);
 
 
-	glColor3f(0.5,0.99,0.5);
+	glColor3f(0.5, 0.99, 0.5);
 
 	// Iarba de jos
 	glBegin(GL_POLYGON);
@@ -469,13 +469,13 @@ void drawScene(void)
 	//cout << scorText;
 	//strcat(text, scorText);
 
-	RenderString(200.0f, 425.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)text);
+	RenderString(200.0f, 425.0f, GLUT_BITMAP_9_BY_15, (const unsigned char*)text);
 
-	RenderString(140.0f, -115.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)"Scor: ");
-	RenderString(200.0f, -115.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)scorText);
+	RenderString(140.0f, -115.0f, GLUT_BITMAP_9_BY_15, (const unsigned char*)"Scor: ");
+	RenderString(200.0f, -115.0f, GLUT_BITMAP_9_BY_15, (const unsigned char*)scorText);
 
-	RenderString(300.0f, -115.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)"Highscore: ");
-	RenderString(420.0f, -115.0f, GLUT_BITMAP_TIMES_ROMAN_24, (const unsigned char*)highscoreText);
+	RenderString(300.0f, -115.0f, GLUT_BITMAP_9_BY_15, (const unsigned char*)"Highscore: ");
+	RenderString(420.0f, -115.0f, GLUT_BITMAP_9_BY_15, (const unsigned char*)highscoreText);
 	// Delimitare sosea
 	glLineWidth(5);
 	glColor3f(1, 1, 0);
