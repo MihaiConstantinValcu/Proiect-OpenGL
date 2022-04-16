@@ -792,7 +792,7 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(800, 600);
 	glutInitWindowPosition(100, 100);
-	glutCreateWindow("Depaseste masinile - mini game");
+	glutCreateWindow("Crash Mission");
 	init();
 
 
