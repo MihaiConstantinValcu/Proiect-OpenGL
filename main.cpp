@@ -36,6 +36,12 @@ bool gameover = false;
 
 int highscore;
 
+void delay(float secs)
+{
+	float end = clock() / CLOCKS_PER_SEC + secs;
+	while ((clock() / CLOCKS_PER_SEC) < end);
+}
+
 void init(void)
 {
 	glClearColor(0.4, 0.4, 0.4, 0.0);
@@ -149,8 +155,11 @@ void startMenu(void) {
 	glColor3f(1, 1, 1);
 	glRecti(-30, -15, 30, 15);
 
-	glColor3f(0.5, 0.5, 0.5);
-	glRecti(-5, -15, 5, 15);
+	//girofar
+	glColor3f(0, 0, 1);
+	glRecti(-5, -15, 5, 0);
+	glColor3f(1, 0, 0);
+	glRecti(-5, 0, 5, 15);
 
 	// stopuri
 	glColor3f(1, 0, 0);
@@ -205,8 +214,11 @@ void startMenu(void) {
 	glColor3f(1, 1, 1);
 	glRecti(-30, -15, 30, 15);
 
-	glColor3f(0.5, 0.5, 0.5);
-	glRecti(-5, -15, 5, 15);
+	//girofar
+	glColor3f(0, 0, 1);
+	glRecti(-5, -15, 5, 0);
+	glColor3f(1, 0, 0);
+	glRecti(-5, 0, 5, 15);
 
 	// stopuri
 	glColor3f(1, 0, 0);
@@ -313,8 +325,11 @@ void endScreen(void) {
 	glColor3f(1, 1, 1);
 	glRecti(-30, -15, 30, 15);
 
-	glColor3f(0.5, 0.5, 0.5);
-	glRecti(-5, -15, 5, 15);
+	//girofar
+	glColor3f(0, 0, 1);
+	glRecti(-5, -15, 5, 0);
+	glColor3f(1, 0, 0);
+	glRecti(-5, 0, 5, 15);
 
 	// stopuri
 	glColor3f(1, 0, 0);
@@ -369,8 +384,11 @@ void endScreen(void) {
 	glColor3f(1, 1, 1);
 	glRecti(-30, -15, 30, 15);
 
-	glColor3f(0.5, 0.5, 0.5);
-	glRecti(-5, -15, 5, 15);
+	//girofar
+	glColor3f(0, 0, 1);
+	glRecti(-5, -15, 5, 0);
+	glColor3f(1, 0, 0);
+	glRecti(-5, 0, 5, 15);
 
 	// stopuri
 	glColor3f(1, 0, 0);
@@ -492,6 +510,7 @@ void drawScene(void)
 
 
 	//desenam masina
+
 	glPushMatrix();
 	glTranslated(0.0, j, 0.0);
 
@@ -519,6 +538,8 @@ void drawScene(void)
 	glRectf(45, 15, 40, 5);
 	glRectf(45, -15, 40, -5);
 
+	//glPushMatrix();
+
 	if (ok == 0)
 	{
 		rsj = 8;
@@ -538,11 +559,15 @@ void drawScene(void)
 		dificultate = 3;
 	}
 	if (score == 1000) {
-		dificultate = 4;
+		dificultate = 3.5;
 	}
 
 
 	if (ok == 0) {
+
+
+		delay(3);
+
 		inEndScreen = true;
 		glutDisplayFunc(endScreen);
 		if (gameover == false) {
